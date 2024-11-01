@@ -1,14 +1,15 @@
 {
-  "name": "easy-react-keycloak",
-  "version": "1.0.0",
+  "name": "react-keycloak-easy",
+  "version": "1.0.1",
   "description": "wrapper for keycloak-js",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Kritskii-A/easy-react-keycloak.git"
+    "url": "git+https://github.com/Kritskii-A/react-keycloak-easy.git"
   },
   "keywords": [
     "react",
@@ -30,6 +31,13 @@
     "typescript": ">=3.8"
   },
   "devDependencies": {
+    "@types/keycloak-js": "^3.4.1",
     "@types/react": "^18.3.12"
-  }
+  },
+  "files": [
+    "lib",
+    "index.js",
+    "README.md",
+    "package.json"
+  ]
 }
