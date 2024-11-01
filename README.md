@@ -7,5 +7,5 @@
 Установите пакет с помощью npm:
 
 ```bash
-npm install easy-react-keycloak
+npm install react-keycloak-easy
 ```

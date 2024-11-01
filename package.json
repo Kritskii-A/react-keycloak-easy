@@ -1,6 +1,6 @@
 {
   "name": "react-keycloak-easy",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "wrapper for keycloak-js",
   "main": "index.js",
   "scripts": {
