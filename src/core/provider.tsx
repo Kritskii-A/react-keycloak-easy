@@ -235,10 +235,13 @@ export function createAuthProvider<T extends AuthClient>(
           token,
         });
 
-      if (event === "onAuthRefreshSuccess" && tokenExchangeParams && token) {
+      if (
+        (event === "onAuthSuccess" || event === "onAuthRefreshSuccess") &&
+        tokenExchangeParams &&
+        token
+      ) {
         try {
           const newToken = await this.tokenExchange(token, tokenExchangeParams);
-          console.log("Exchanged token:", newToken);
 
           // Update state with the new exchanged token
           this.setState({
