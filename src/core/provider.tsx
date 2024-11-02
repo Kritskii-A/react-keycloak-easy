@@ -118,7 +118,6 @@ export function createAuthProvider<T extends AuthClient>(
         authClient !== prevAuthClient ||
         !isEqual(initOptions, prevInitOptions)
       ) {
-        // De-init previous AuthClient instance
         prevAuthClient.onReady = undefined;
         prevAuthClient.onAuthSuccess = undefined;
         prevAuthClient.onAuthError = undefined;
@@ -127,9 +126,7 @@ export function createAuthProvider<T extends AuthClient>(
         prevAuthClient.onAuthLogout = undefined;
         prevAuthClient.onTokenExpired = undefined;
 
-        // Reset state
         this.setState({ ...initialState });
-        // Init new AuthClient instance
         this.init();
       }
     }
@@ -137,7 +134,6 @@ export function createAuthProvider<T extends AuthClient>(
     init() {
       const { initOptions, authClient } = this.props;
 
-      // Attach Keycloak listeners
       authClient.onReady = this.updateState("onReady");
       authClient.onAuthSuccess = this.updateState("onAuthSuccess");
       authClient.onAuthError = this.onError("onAuthError");
@@ -185,7 +181,6 @@ export function createAuthProvider<T extends AuthClient>(
 
     onError = (event: AuthClientEvent) => (error?: AuthClientError) => {
       const { onEvent } = this.props;
-      // Notify Events listener
       onEvent && onEvent(event, error);
     };
 
@@ -204,16 +199,12 @@ export function createAuthProvider<T extends AuthClient>(
         isLoading: prevLoading,
       } = this.state;
 
-      // Notify Events listener
       onEvent && onEvent(event);
 
-      // Check Loading state
       const isLoading = isLoadingCheck ? isLoadingCheck(authClient) : false;
 
-      // Check if user is authenticated
       const isAuthenticated = isUserAuthenticated(authClient);
 
-      // Notify token listener, if any
       const { idToken, refreshToken, token } = authClient;
       onTokens &&
         onTokens({
@@ -231,12 +222,10 @@ export function createAuthProvider<T extends AuthClient>(
         try {
           const newToken = await this.tokenExchange(token, tokenExchangeParams);
 
-          // Update state with the new exchanged token
           this.setState({
             exchangedToken: newToken,
           });
 
-          // Optionally notify token listener with the new exchanged token
           if (onTokens) {
             onTokens({
               idToken,
@@ -255,7 +244,6 @@ export function createAuthProvider<T extends AuthClient>(
         }
       }
 
-      // Avoid double-refresh if state hasn't changed
       if (
         !prevInitialized ||
         isAuthenticated !== prevAuthenticated ||
@@ -271,11 +259,9 @@ export function createAuthProvider<T extends AuthClient>(
 
     refreshToken = (event: AuthClientEvent) => () => {
       const { autoRefreshToken, authClient, onEvent } = this.props;
-      // Notify Events listener
       onEvent && onEvent(event);
 
       if (autoRefreshToken !== false) {
-        // Refresh Keycloak token
         authClient.updateToken(5);
       }
     };
