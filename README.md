@@ -78,6 +78,17 @@ const App = () => {
   for more options see [Keycloak docs](https://www.keycloak.org/docs/latest/securing_apps/index.html#init-options).
 
 - `tokenExchangeParams`, are parameters used for the token exchange process in Keycloak. Token exchange allows a client to exchange one type of token for another. This is useful for scenarios like accessing resources of another client or performing actions on behalf of another user.
+  Example params:
+
+  ```
+    tokenExchangeParams={{
+        client_id: "name_first_client",
+        requested_token_type: "urn:ietf:params:oauth:token-type:access_token",
+        audience: "name_with_exchange_client",
+    }}
+
+  ```
+
   In this case, you should also track onTokens with type = 'exchange' to handle token updates:
 
 ```
