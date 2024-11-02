@@ -19,12 +19,7 @@ export type AuthProviderProps<T extends AuthClient> = {
   /**
    * The single AuthClient instance to be used by your application.
    */
-  authClient: T & {
-    tokenExchange: string;
-    tokenExchangeParsed: {
-      [key: string]: string;
-    };
-  };
+  authClient: T;
 
   /**
    * A flag to enable automatic token refresh. Defaults to true.
