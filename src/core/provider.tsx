@@ -246,7 +246,7 @@ export function createAuthProvider<T extends AuthClient>(
 
             const b64DecodeUnicode = (input: string) => {
               return decodeURIComponent(
-                atob(input).replace(/(.)/g, (m, p) => {
+                atob(input).replace(/(.)/g, (_, p) => {
                   let code = p.charCodeAt(0).toString(16).toUpperCase();
 
                   if (code.length < 2) {
@@ -282,7 +282,7 @@ export function createAuthProvider<T extends AuthClient>(
             };
 
             const decodeToken = (token: string) => {
-              const [header, payload] = token.split(".");
+              const [_, payload] = token.split(".");
 
               if (typeof payload !== "string") {
                 throw new Error("Unable to decode token, payload not found.");
