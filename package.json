@@ -1,8 +1,8 @@
 {
   "name": "react-keycloak-easy",
-  "version": "1.0.2",
-  "description": "wrapper for keycloak-js",
-  "main": "index.js",
+  "version": "1.0.3",
+  "description": "React wrapper for Keycloak javascript adapter",
+  "main": "lib/index.js",
   "scripts": {
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,10 +13,11 @@
   },
   "keywords": [
     "react",
-    "keycloak"
+    "keycloak",
+    "keycloak-js"
   ],
   "author": "Aleksandr Kritskii <kritskii-a@bk.ru>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Kritskii-A/easy-react-keycloak/issues"
   },

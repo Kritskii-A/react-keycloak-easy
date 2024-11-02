@@ -1,11 +1,11 @@
 export interface AuthClientError {
-  error: string
+  error: string;
 
-  error_description: string
+  error_description: string;
 }
 
 export interface AuthClientInitOptions {
-  [paramName: string]: any
+  [paramName: string]: any;
 }
 
 /**
@@ -16,48 +16,48 @@ export interface AuthClient {
    * The base64 encoded token that can be sent in the Authorization header in
    * requests to services.
    */
-  token?: string
+  token?: string;
 
   /**
    * The base64 encoded refresh token that can be used to retrieve a new token.
    */
-  refreshToken?: string
+  refreshToken?: string;
 
   /**
    * The base64 encoded ID token.
    */
-  idToken?: string
+  idToken?: string;
 
   /**
    * Called when the adapter is initialized.
    */
-  onReady?(authenticated?: boolean): void
+  onReady?(authenticated?: boolean): void;
 
   /**
    * Called when a user is successfully authenticated.
    */
-  onAuthSuccess?(): void
+  onAuthSuccess?(): void;
 
   /**
    * Called if there was an error during authentication.
    */
-  onAuthError?(errorData: AuthClientError): void
+  onAuthError?(errorData: AuthClientError): void;
 
   /**
    * Called when the token is refreshed.
    */
-  onAuthRefreshSuccess?(): void
+  onAuthRefreshSuccess?(): void;
 
   /**
    * Called if there was an error while trying to refresh the token.
    */
-  onAuthRefreshError?(): void
+  onAuthRefreshError?(): void;
 
   /**
    * Called if the user is logged out (will only be called if the session
    * status iframe is enabled, or in Cordova mode).
    */
-  onAuthLogout?(): void
+  onAuthLogout?(): void;
 
   /**
    * Called when the access token is expired. If a refresh token is available
@@ -65,14 +65,14 @@ export interface AuthClient {
    * it's not (ie. with implicit flow) you can redirect to login screen to
    * obtain a new access token.
    */
-  onTokenExpired?(): void
+  onTokenExpired?(): void;
 
   /**
    * Called to initialize the adapter.
    * @param initOptions Initialization options.
    * @returns A promise to set functions to be invoked on success or error.
    */
-  init(initOptions: AuthClientInitOptions): Promise<boolean>
+  init(initOptions: AuthClientInitOptions): Promise<boolean>;
 
   /**
    * If the token expires within `minValidity` seconds, the token is refreshed.
@@ -82,7 +82,12 @@ export interface AuthClient {
    * @returns A promise to set functions that can be invoked if the token is
    *          still valid, or if the token is no longer valid.
    */
-  updateToken(minValidity: number): Promise<boolean>
+  updateToken(minValidity: number): Promise<boolean>;
+
+  /**
+   * Classic or Exchange token flow
+   */
+  type: "classic" | "exchange";
 }
 
 /**
@@ -90,18 +95,18 @@ export interface AuthClient {
  */
 export type AuthClientTokens = Pick<
   AuthClient,
-  'idToken' | 'refreshToken' | 'token'
->
+  "idToken" | "refreshToken" | "token" | "type"
+>;
 
 /**
  * ReactAuth event types
  */
 export type AuthClientEvent =
-  | 'onReady'
-  | 'onInitError'
-  | 'onAuthSuccess'
-  | 'onAuthError'
-  | 'onAuthRefreshSuccess'
-  | 'onAuthRefreshError'
-  | 'onAuthLogout'
-  | 'onTokenExpired'
+  | "onReady"
+  | "onInitError"
+  | "onAuthSuccess"
+  | "onAuthError"
+  | "onAuthRefreshSuccess"
+  | "onAuthRefreshError"
+  | "onAuthLogout"
+  | "onTokenExpired";

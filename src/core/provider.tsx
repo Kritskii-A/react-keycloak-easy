@@ -61,8 +61,7 @@ export type AuthProviderProps<T extends AuthClient> = {
   onTokens?: (tokens: AuthClientTokens) => void;
 
   tokenExchangeParams?: {
-    clientId: string;
-    audience: string;
+    [key: string]: string;
   };
 };
 
@@ -155,7 +154,9 @@ export function createAuthProvider<T extends AuthClient>(
 
     async tokenExchange(
       token: string,
-      tokenExchangeParams: any
+      tokenExchangeParams: {
+        [key: string]: string;
+      }
     ): Promise<string> {
       const { authClient } = this.props;
       //@ts-ignore
@@ -228,6 +229,7 @@ export function createAuthProvider<T extends AuthClient>(
       const { idToken, refreshToken, token } = authClient;
       onTokens &&
         onTokens({
+          type: "classic",
           idToken,
           refreshToken,
           token,
@@ -245,7 +247,12 @@ export function createAuthProvider<T extends AuthClient>(
 
           // Optionally notify token listener with the new exchanged token
           if (onTokens) {
-            onTokens({ idToken, refreshToken, token: newToken });
+            onTokens({
+              idToken,
+              refreshToken,
+              token: newToken,
+              type: "exchange",
+            });
           }
         } catch (error) {
           console.error("Token exchange failed:", error);
