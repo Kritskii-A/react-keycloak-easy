@@ -11,11 +11,6 @@
   - [Setup Keycloak instance](#setup-keycloak-instance)
   - [Setup KeycloakProvider](#setup-keycloakprovider)
   - [Hook Usage](#hook-usage)
-  - [External Usage (Advanced)](#external-usage-advanced)
-- [Examples](#examples)
-- [Guides and Articles](#guides-and-articles)
-- [Alternatives](#alternatives)
-- [Contributing](#contributing)
 - [License](#license)
 
 ---

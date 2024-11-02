@@ -12,7 +12,7 @@ export type IAuthContextProps<T extends AuthClient> = {
   authClient?: T & {
     tokenExchange?: string;
     tokenExchangeParsed?: {
-      [key: string]: string;
+      [key: string]: any;
     };
   };
 
