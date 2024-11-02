@@ -243,6 +243,8 @@ export function createAuthProvider<T extends AuthClient>(
               token: newToken,
               type: "exchange",
             });
+            //@ts-ignore
+            authClient.exchangeToken = newToken;
           }
         } catch (error) {
           console.error("Token exchange failed:", error);
