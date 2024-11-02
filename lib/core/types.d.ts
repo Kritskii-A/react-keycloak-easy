@@ -73,8 +73,10 @@ export interface AuthClient {
 /**
  * Set of tokens provided by AuthClient
  */
-export type AuthClientTokens = Pick<AuthClient, 'idToken' | 'refreshToken' | 'token'>;
+export type AuthClientTokens = Pick<AuthClient, "idToken" | "refreshToken" | "token"> & {
+    type: "classic" | "exchange";
+};
 /**
  * ReactAuth event types
  */
-export type AuthClientEvent = 'onReady' | 'onInitError' | 'onAuthSuccess' | 'onAuthError' | 'onAuthRefreshSuccess' | 'onAuthRefreshError' | 'onAuthLogout' | 'onTokenExpired';
+export type AuthClientEvent = "onReady" | "onInitError" | "onAuthSuccess" | "onAuthError" | "onAuthRefreshSuccess" | "onAuthRefreshError" | "onAuthLogout" | "onTokenExpired";

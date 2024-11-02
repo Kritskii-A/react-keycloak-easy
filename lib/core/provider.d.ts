@@ -45,8 +45,7 @@ export type AuthProviderProps<T extends AuthClient> = {
      */
     onTokens?: (tokens: AuthClientTokens) => void;
     tokenExchangeParams?: {
-        clientId: string;
-        audience: string;
+        [key: string]: string;
     };
 };
 type AuthProviderState = {
@@ -76,7 +75,9 @@ export declare function createAuthProvider<T extends AuthClient>(AuthContext: Re
         componentDidMount(): void;
         componentDidUpdate({ authClient: prevAuthClient, initOptions: prevInitOptions, }: AuthProviderProps<T>): void;
         init(): void;
-        tokenExchange(token: string, tokenExchangeParams: any): Promise<string>;
+        tokenExchange(token: string, tokenExchangeParams: {
+            [key: string]: string;
+        }): Promise<string>;
         onError: (event: AuthClientEvent) => (error?: AuthClientError) => void;
         updateState: (event: AuthClientEvent) => () => Promise<void>;
         refreshToken: (event: AuthClientEvent) => () => void;
@@ -110,7 +111,9 @@ export declare function createAuthProvider<T extends AuthClient>(AuthContext: Re
         componentDidMount(): void;
         componentDidUpdate({ authClient: prevAuthClient, initOptions: prevInitOptions, }: AuthProviderProps<T>): void;
         init(): void;
-        tokenExchange(token: string, tokenExchangeParams: any): Promise<string>;
+        tokenExchange(token: string, tokenExchangeParams: {
+            [key: string]: string;
+        }): Promise<string>;
         onError: (event: AuthClientEvent) => (error?: AuthClientError) => void;
         updateState: (event: AuthClientEvent) => () => Promise<void>;
         refreshToken: (event: AuthClientEvent) => () => void;

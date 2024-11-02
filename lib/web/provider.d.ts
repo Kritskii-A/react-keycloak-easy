@@ -10,7 +10,9 @@ export declare const ReactKeycloakProvider: {
         componentDidMount(): void;
         componentDidUpdate({ authClient: prevAuthClient, initOptions: prevInitOptions, }: import("..").AuthProviderProps<import("keycloak-js").default>): void;
         init(): void;
-        tokenExchange(token: string, tokenExchangeParams: any): Promise<string>;
+        tokenExchange(token: string, tokenExchangeParams: {
+            [key: string]: string;
+        }): Promise<string>;
         onError: (event: import("..").AuthClientEvent) => (error?: import("..").AuthClientError) => void;
         updateState: (event: import("..").AuthClientEvent) => () => Promise<void>;
         refreshToken: (event: import("..").AuthClientEvent) => () => void;
@@ -104,7 +106,9 @@ export declare const ReactKeycloakProvider: {
         componentDidMount(): void;
         componentDidUpdate({ authClient: prevAuthClient, initOptions: prevInitOptions, }: import("..").AuthProviderProps<import("keycloak-js").default>): void;
         init(): void;
-        tokenExchange(token: string, tokenExchangeParams: any): Promise<string>;
+        tokenExchange(token: string, tokenExchangeParams: {
+            [key: string]: string;
+        }): Promise<string>;
         onError: (event: import("..").AuthClientEvent) => (error?: import("..").AuthClientError) => void;
         updateState: (event: import("..").AuthClientEvent) => () => Promise<void>;
         refreshToken: (event: import("..").AuthClientEvent) => () => void;

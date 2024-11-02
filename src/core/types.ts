@@ -83,11 +83,6 @@ export interface AuthClient {
    *          still valid, or if the token is no longer valid.
    */
   updateToken(minValidity: number): Promise<boolean>;
-
-  /**
-   * Classic or Exchange token flow
-   */
-  type: "classic" | "exchange";
 }
 
 /**
@@ -95,8 +90,10 @@ export interface AuthClient {
  */
 export type AuthClientTokens = Pick<
   AuthClient,
-  "idToken" | "refreshToken" | "token" | "type"
->;
+  "idToken" | "refreshToken" | "token"
+> & {
+  type: "classic" | "exchange";
+};
 
 /**
  * ReactAuth event types
