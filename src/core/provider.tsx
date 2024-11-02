@@ -212,19 +212,6 @@ export function createAuthProvider<T extends AuthClient>(
       // Check if user is authenticated
       const isAuthenticated = isUserAuthenticated(authClient);
 
-      // Avoid double-refresh if state hasn't changed
-      if (
-        !prevInitialized ||
-        isAuthenticated !== prevAuthenticated ||
-        isLoading !== prevLoading
-      ) {
-        this.setState({
-          initialized: true,
-          isAuthenticated,
-          isLoading,
-        });
-      }
-
       // Notify token listener, if any
       const { idToken, refreshToken, token } = authClient;
       onTokens &&
@@ -260,6 +247,19 @@ export function createAuthProvider<T extends AuthClient>(
         } catch (error) {
           console.error("Token exchange failed:", error);
         }
+      }
+
+      // Avoid double-refresh if state hasn't changed
+      if (
+        !prevInitialized ||
+        isAuthenticated !== prevAuthenticated ||
+        isLoading !== prevLoading
+      ) {
+        this.setState({
+          initialized: true,
+          isAuthenticated,
+          isLoading,
+        });
       }
     };
 
