@@ -1,6 +1,6 @@
 {
   "name": "react-keycloak-easy",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "React wrapper for Keycloak javascript adapter",
   "main": "lib/index.js",
   "scripts": {
@@ -40,5 +40,6 @@
     "index.js",
     "README.md",
     "package.json"
-  ]
+  ],
+  "types": "lib/index.d.ts"
 }
