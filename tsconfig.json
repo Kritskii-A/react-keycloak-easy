@@ -5,6 +5,7 @@
     "target": "es5",
     "lib": ["esnext", "dom"],
     "sourceMap": true,
+    "sourceRoot": "./",
     "allowJs": false,
     "jsx": "react",
     "declaration": true,
